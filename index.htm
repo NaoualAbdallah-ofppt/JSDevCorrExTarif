@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Gestion Billets</title>
+<link rel="stylesheet" href="styles/style.css" type="text/css"/>
+<script>
+    var tabZ=["Zone1","Zone2","Zone3","Zone4","Zone5"]
+    var tabTarifZ=[4,7,10,15,20]
+    var tabTrancheAge=["Enfants","Personnes agées","Personnes à besoins limités","Autre"]
+    var tabReduction=[30,100,[50,20],0]
+   
+</script>
+</head>
+<body>
+<h1>Gestion Billets</h1>
+<fieldset>
+
+<form action="validation.php" method="GET" id="frm">
+<label id="lbl1">Nom</label><input class="C1" type="text" id="ZNom"/><br/>
+<label id="lbl2">Prénom</label><input class="C1" type="text" id="ZPrenom"/><br/>
+<label id="lbl3">CIN</label><input class="C1" type="text" id="ZCIN"/><br/>
+<label id="lbl4">Zone</label>
+<select id="ZZone" onchange="tarif();reduction()">
+<option value="0">Choisir une zone</option>
+<script>
+for (let i=0 ; i<tabZ.length;i++)
+{
+    document.write ("<option>" + tabZ[i] + "</option>")
+}
+</script>
+
+</select>
+<!--
+<ul>
+    <script>
+        for (let i=0 ; i<TabZ.length;i++)
+        {
+            document.write ("<li>" + TabZ[i] + "</li>")
+        }
+        </script>
+</ul>
+-->
+<label class="C3" >Tarif (en DH)</label><input class="C2"  type="text" id="ZTarif" value="Aucune zone choisie" disabled/><br/>
+<label id="lbl4" >Tranche d'âge</label>
+<select id="ZTranche" onchange="reduction()">
+<option value="0">Choisir une tranche</option>
+<script>
+    for (let i=0 ; i<tabTrancheAge.length;i++)
+        {
+            document.write ("<option>" + tabTrancheAge[i] + "</option>")
+        }
+</script>
+</select><label  class="C3" >Réduction (en %)</label><input class="C2" type="text" id="ZReduction" value="Aucune réduction choisie" disabled/><br/>
+<table>
+<thead>
+<tr><th>Type de transport</th><th>Type de billet</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<input type="checkbox" id="CKMetro"/><label>Metro</label><br/><input type="checkbox" id="CKRER"/><label>RER</label><br/><input type="checkbox" id="CKTGV"/><label>TGV</label>
+</td>
+<td>
+
+<input type="radio" name="Periode" id="radJ" checked/><label>Jour</label><br/>
+<input type="radio" name="Periode" id="radS"/><label>Semaine</label><br/>
+<input type="radio" name="Periode" id="radM"/><label>Mois</label>
+</td>
+</tbody>
+<tfoot></tfoot>
+</table>
+<p class="Remarque">
+NB: Vous pouvez choisir plusieurs types de transport mais vous ne pouvez choisir qu'un seul type de billet
+</p>
+<input type="Button" value="Simuler" onclick="simuler()" />
+<input type="submit" value="Valider" /><br/>
+<label id="lblErreur"></label>
+</form>
+</fieldset>
+
+<script type="text/javascript" src="scripts/script.js">
+</script>
+</body>
+</html>
